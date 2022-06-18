@@ -1,4 +1,0 @@
-include ':ecnLinter'
-include ':app'
-include ':library'
-rootProject.name = "AndrECn-kotlin"
