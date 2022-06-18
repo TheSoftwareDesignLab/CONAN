@@ -1,0 +1,744 @@
+{
+    "$schema" : "https://raw.githubusercontent.com/oasis-tcs/sarif-spec/master/Schemata/sarif-schema-2.1.0.json",
+    "version" : "2.1.0",
+    "runs" : [
+        {
+            "tool": {
+                "driver": {
+                    "name": "Android Lint",
+                    "fullName": "Android Lint (in cli)",
+                    "version": "7.0.0-alpha10",
+                    "semanticVersion": "7.0.0-alpha10",
+                    "organization": "Google",
+                    "informationUri": "https://developer.android.com/studio/write/lint",
+                    "fullDescription": {
+                        "text": "Static analysis originally for Android source code but now performing general analysis"
+                    },
+                    "language": "en-US",
+                    "rules": [
+                        {
+                            "id": "AvoidSyncExec",
+                            "shortDescription": {
+                                "text": "Avoid performing a synchronous request with .execute()",
+                                "markdown": "Avoid performing a synchronous request with `.execute()`"
+                            },
+                            "fullDescription": {
+                                "text": "Using the .execute() method on a call object will perform a synchronous request which is not recommended and its usage is discouraged\n\nMore information available here: https://square.github.io/retrofit/\n",
+                                "markdown": "Using the `.execute()` method on a call object will perform a synchronous request which is not recommended and its usage is discouraged\n\nMore information available here: https://square.github.io/retrofit/\n"
+                            },
+                            "defaultConfiguration": {
+                                "level": "warning",
+                                "rank": 50
+                            },
+                            "properties": {
+                                "tags": [
+                                    "Retrofit"
+                                ]
+                            }
+                        },
+                        {
+                            "id": "IssueNoCheckNetworkConnectionInMethod",
+                            "shortDescription": {
+                                "text": "Network operations in this method but the network availability is not verified in the method",
+                                "markdown": "Network operations in this method but the **network availability** is not verified **in the method**"
+                            },
+                            "fullDescription": {
+                                "text": "\nIn order to retrieve information from Internet is recommended to verify the network availability before performing a network operation, however, there is no such verification within the method\n\nNote: Before you perform network operations, it's good practice to check the state of network connectivity. Among other things, this could prevent your app from inadvertently using the wrong radio. If a network connection is unavailable, your application should respond gracefully. To check the network connection, you typically use the following class:\n\nConnectivityManager: Answers queries about the state of network connectivity. It also notifies applications when network connectivity changes.\n",
+                                "markdown": "\nIn order to retrieve information from Internet is recommended to verify the **network availability** before performing a network operation, however, there is no such verification **within the method**\n\n**Note:** Before you perform network operations, it's good practice to check the state of network connectivity. Among other things, this could prevent your app from inadvertently using the wrong radio. If a network connection is unavailable, your application should respond gracefully. To check the network connection, you typically use the following class:\n\n**ConnectivityManager:** Answers queries about the state of network connectivity. It also notifies applications when network connectivity changes.\n"
+                            },
+                            "defaultConfiguration": {
+                                "level": "warning",
+                                "rank": 50
+                            },
+                            "properties": {
+                                "tags": [
+                                    "Connectivity"
+                                ]
+                            }
+                        },
+                        {
+                            "id": "IssueNoCheckNetworkTypeInMethod",
+                            "shortDescription": {
+                                "text": "Network operations in this method but the network type is not verified in the method",
+                                "markdown": "Network operations in this method but the **network type** is not verified **in the method**"
+                            },
+                            "fullDescription": {
+                                "text": "\nIn order to retrieve information from Internet is recommended to verify the network type before performing a network operation, however, there is no such verification within the method\n\nA device can have various types of network connections. For the full list of possible network types, see https://developer.android.com/reference/android/net/ConnectivityManager\n\nNote: Wi-Fi is typically faster. Also, mobile data is often metered, which can get expensive. A common strategy for apps is to only fetch large data if a Wi-Fi network is available.\n\nMore information available here: \nhttps://developer.android.com/training/basics/network-ops/managing\nhttps://developer.android.com/training/efficient-downloads/connectivity_patterns\n",
+                                "markdown": "\nIn order to retrieve information from Internet is recommended to verify the **network type** before performing a network operation, however, there is no such verification **within the method**\n\nA device can have various types of network connections. For the full list of possible network types, see https://developer.android.com/reference/android/net/ConnectivityManager\n\n**Note:** `Wi-Fi` is typically faster. Also, mobile data is often metered, which can get expensive. A common strategy for apps is to only fetch large data if a Wi-Fi network is available.\n\nMore information available here: \nhttps://developer.android.com/training/basics/network-ops/managing\nhttps://developer.android.com/training/efficient-downloads/connectivity_patterns\n"
+                            },
+                            "defaultConfiguration": {
+                                "level": "warning",
+                                "rank": 50
+                            },
+                            "properties": {
+                                "tags": [
+                                    "Connectivity"
+                                ]
+                            }
+                        },
+                        {
+                            "id": "NoInternetConnectionCheckMethod",
+                            "shortDescription": {
+                                "text": ""
+                            },
+                            "fullDescription": {
+                                "text": "More information available here: https://developer.android.com/training/basics/network-ops/connecting"
+                            },
+                            "defaultConfiguration": {
+                                "level": "warning",
+                                "rank": 50
+                            },
+                            "properties": {
+                                "tags": [
+                                    "Connectivity"
+                                ]
+                            }
+                        },
+                        {
+                            "id": "NoManageNetworkUsage",
+                            "shortDescription": {
+                                "text": "Not offering options to manage data usage"
+                            },
+                            "fullDescription": {
+                                "text": "Manage network usage:\n\nIt has been detected that your application supports network access since you are defining android.permission.INTERNET permission in your manifest.\n\nYou can implement a preferences activity that gives users explicit control over your app's usage of network resources. For example:\n\n1. You might allow users to upload videos only when the device is connected to a Wi-Fi network.\n\nYou can declare the intent filter for the ACTION_MANAGE_NETWORK_USAGE action to indicate that your application defines an activity that offers options to control data usage. ACTION_MANAGE_NETWORK_USAGE shows settings for managing the network data usage of a specific application. When your app has a settings activity that allows users to control network usage, you should declare this intent filter for that activity.\n\nMore information available here: https://developer.android.com/training/basics/network-ops/managing#manage-usage\n",
+                                "markdown": "**Manage network usage:**\n\nIt has been detected that your application supports network access since you are defining `android.permission.INTERNET` permission in your manifest.\n\nYou can implement a preferences activity that gives users explicit control over your app's usage of network resources. For example:\n\n**1.** You might allow users to upload videos only when the device is connected to a Wi-Fi network.\n\nYou can declare the intent filter for the `ACTION_MANAGE_NETWORK_USAGE` action to indicate that your application defines an activity that offers options to control data usage. `ACTION_MANAGE_NETWORK_USAGE` shows settings for managing the network data usage of a specific application. When your app has a settings activity that allows users to control network usage, you should declare this intent filter for that activity.\n\nMore information available here: https://developer.android.com/training/basics/network-ops/managing#manage-usage\n"
+                            },
+                            "defaultConfiguration": {
+                                "level": "warning",
+                                "rank": 50
+                            },
+                            "properties": {
+                                "tags": [
+                                    "Connectivity"
+                                ]
+                            }
+                        },
+                        {
+                            "id": "NoMoreThanOneOkhttpConstructor",
+                            "shortDescription": {
+                                "text": "More than one OkHttpClient instance"
+                            },
+                            "fullDescription": {
+                                "text": "OkHttp performs best when you create a single OkHttpClient instance and reuse it for all of your HTTP calls. This is because each client holds its own connection pool and thread pools. Reusing connections and threads reduces latency and saves memory. Conversely, creating a client for each request wastes resources on idle pools.\n\nMore information available here: https://square.github.io/okhttp/4.x/okhttp/okhttp3/-ok-http-client/\n",
+                                "markdown": "`OkHttp` performs best when you create a single `OkHttpClient` instance and reuse it for all of your `HTTP` calls. This is because each client holds its own connection pool and thread pools. Reusing connections and threads reduces latency and saves memory. Conversely, creating a client for each request wastes resources on idle pools.\n\nMore information available here: https://square.github.io/okhttp/4.x/okhttp/okhttp3/-ok-http-client/\n"
+                            },
+                            "defaultConfiguration": {
+                                "level": "warning",
+                                "rank": 50
+                            },
+                            "properties": {
+                                "tags": [
+                                    "OKHttp"
+                                ]
+                            }
+                        },
+                        {
+                            "id": "NoOnFailureImplementedEmpty",
+                            "shortDescription": {
+                                "text": "The OnFailure() method is empty",
+                                "markdown": "The `OnFailure()` method is empty"
+                            },
+                            "fullDescription": {
+                                "text": "            "
+                            },
+                            "defaultConfiguration": {
+                                "level": "warning",
+                                "rank": 50
+                            },
+                            "properties": {
+                                "tags": [
+                                    "Connectivity"
+                                ]
+                            }
+                        },
+                        {
+                            "id": "NoUsingWorkManager",
+                            "shortDescription": {
+                                "text": "Schedule reliable and asynchronous tasks with WorkManager",
+                                "markdown": "Schedule reliable and asynchronous tasks with `WorkManager`"
+                            },
+                            "fullDescription": {
+                                "text": "\nUnifying Background Task Scheduling on Android:\n\nWorkManager is an API that makes it easy to schedule reliable, asynchronous tasks that are expected to run even if the app exits or the device restarts. The WorkManager API is a suitable and recommended replacement for all previous Android background scheduling APIs, including FirebaseJobDispatcher, GcmNetworkManager, and Job Scheduler. WorkManager incorporates the features of its predecessors in a modern, consistent API that works back to API level 14 while also being conscious of battery life.\n\nUnder the hood WorkManager uses an underlying job dispatching service based on the following criteria:\n\nResources:\n\nhttps://developer.android.com/topic/libraries/architecture/workmanager\nhttps://android-developers.googleblog.com/2019/11/unifying-background-task-scheduling-on.html\n\nMigration guides:\n\nMigrating from Firebase JobDispatcher to WorkManager: \nhttps://developer.android.com/topic/libraries/architecture/workmanager/migrating-fb\n\nMigrating from GCMNetworkManager to WorkManager:\nhttps://developer.android.com/topic/libraries/architecture/workmanager/migrating-gcm\n",
+                                "markdown": "\n**Unifying Background Task Scheduling on Android:**\n\n`WorkManager` is an API that makes it easy to schedule reliable, asynchronous tasks that are expected to run even if the app exits or the device restarts. The WorkManager API is a suitable and recommended replacement for all previous Android background scheduling APIs, including FirebaseJobDispatcher, GcmNetworkManager, and Job Scheduler. WorkManager incorporates the features of its predecessors in a modern, consistent API that works back to API level 14 while also being conscious of battery life.\n\nUnder the hood WorkManager uses an underlying job dispatching service based on the following criteria:\n\n**Resources:**\n\nhttps://developer.android.com/topic/libraries/architecture/workmanager\nhttps://android-developers.googleblog.com/2019/11/unifying-background-task-scheduling-on.html\n\n**Migration guides:**\n\n**Migrating from Firebase JobDispatcher to WorkManager:** \nhttps://developer.android.com/topic/libraries/architecture/workmanager/migrating-fb\n\n**Migrating from GCMNetworkManager to WorkManager:**\nhttps://developer.android.com/topic/libraries/architecture/workmanager/migrating-gcm\n"
+                            },
+                            "defaultConfiguration": {
+                                "level": "warning",
+                                "rank": 50
+                            },
+                            "properties": {
+                                "tags": [
+                                    "Connectivity"
+                                ]
+                            }
+                        },
+                        {
+                            "id": "ObsoleteLintCustomCheck",
+                            "shortDescription": {
+                                "text": "Obsolete custom lint check"
+                            },
+                            "fullDescription": {
+                                "text": "Lint can be extended with \"custom checks\": additional checks implemented by developers and libraries to for example enforce specific API usages required by a library or a company coding style guideline.\n\nThe Lint APIs are not yet stable, so these checks may either cause a performance degradation, or stop working, or provide wrong results.\n\nThis warning flags custom lint checks that are found to be using obsolete APIs and will need to be updated to run in the current lint environment.\n\nIt may also flag issues found to be using a newer version of the API, meaning that you need to use a newer version of lint (or Android Studio or Gradle plugin etc) to work with these checks.",
+                                "markdown": "Lint can be extended with \"custom checks\": additional checks implemented by developers and libraries to for example enforce specific API usages required by a library or a company coding style guideline.\n\nThe Lint APIs are not yet stable, so these checks may either cause a performance degradation, or stop working, or provide wrong results.\n\nThis warning flags custom lint checks that are found to be using obsolete APIs and will need to be updated to run in the current lint environment.\n\nIt may also flag issues found to be using a **newer** version of the API, meaning that you need to use a newer version of lint (or Android Studio or Gradle plugin etc) to work with these checks."
+                            },
+                            "defaultConfiguration": {
+                                "level": "warning",
+                                "rank": 10
+                            },
+                            "properties": {
+                                "tags": [
+                                    "Lint"
+                                ]
+                            }
+                        }
+                    ]
+                }
+            },
+            "originalUriBaseIds": {
+                "%SRCROOT%": {
+                    "uri": "file:///media/HDD/Documents/DevProjects/AndrECn-kotlin/"
+                },
+                "USER_HOME": {
+                    "uri": "file:///media/HDD/Documents/DevProjects/AndrECn-kotlin/"
+                }
+            },
+            "results": [
+                {
+                    "ruleId": "ObsoleteLintCustomCheck",
+                    "ruleIndex": 8,
+                    "message": {
+                        "text": "Lint found an issue registry (androidx.activity.lint.ActivityIssueRegistry) which is older than the current API level; these checks may not work correctly.\n\nRecompile the checks against the latest version. Custom check API version is 8 (4.1), current lint API level is 10 (7.0+)",
+                        "markdown": "Lint found an issue registry (`androidx.activity.lint.ActivityIssueRegistry`) which is older than the current API level; these checks may not work correctly.\n\nRecompile the checks against the latest version. Custom check API version is 8 (4.1), current lint API level is 10 (7.0+)"
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uriBaseId": "USER_HOME",
+                                    "uri": ".gradle/caches/transforms-3/befb26cd7f0d3cf0bc93efb1c30823b5/transformed/jetified-activity-1.2.3/jars/lint.jar"
+                                },
+                                "region": {
+                                    "byteOffset": 0
+                                }                            }
+                        }
+                    ],
+                    "partialFingerprints": {
+                    }
+                },
+                {
+                    "ruleId": "ObsoleteLintCustomCheck",
+                    "ruleIndex": 8,
+                    "message": {
+                        "text": "Lint found an issue registry (androidx.annotation.experimental.lint.ExperimentalIssueRegistry) which did not specify the Lint API version it was compiled with.\n\nThis means that the lint checks are likely not compatible.\n\nIf you are the author of this lint check, make your lint IssueRegistry class contain\n  override val api: Int = com.android.tools.lint.detector.api.CURRENT_API\nor from Java,\n  @Override public int getApi() { return com.android.tools.lint.detector.api.ApiKt.CURRENT_API; }\n\nIf you are just using lint checks from a third party library you have no control over, you can disable these lint checks (if they misbehave) like this:\n\n    android {\n        lintOptions {\n            disable \"UnsafeExperimentalUsageError\",\n                    \"UnsafeExperimentalUsageWarning\"\n        }\n    }\n",
+                        "markdown": "Lint found an issue registry (`androidx.annotation.experimental.lint.ExperimentalIssueRegistry`) which did not specify the Lint API version it was compiled with.\n\n**This means that the lint checks are likely not compatible.**\n\nIf you are the author of this lint check, make your lint `IssueRegistry` class contain\n  override val api: Int = com.android.tools.lint.detector.api.CURRENT_API\nor from Java,\n  @Override public int getApi() { return com.android.tools.lint.detector.api.ApiKt.CURRENT_API; }\n\nIf you are just using lint checks from a third party library you have no control over, you can disable these lint checks (if they misbehave) like this:\n\n    android {\n        lintOptions {\n            disable \"UnsafeExperimentalUsageError\",\n                    \"UnsafeExperimentalUsageWarning\"\n        }\n    }\n"
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uriBaseId": "USER_HOME",
+                                    "uri": ".gradle/caches/transforms-3/93c25bc8b322eb163c3d3331a31a7d8b/transformed/jetified-annotation-experimental-1.0.0/jars/lint.jar"
+                                },
+                                "region": {
+                                    "byteOffset": 0
+                                }                            }
+                        }
+                    ],
+                    "partialFingerprints": {
+                    }
+                },
+                {
+                    "ruleId": "ObsoleteLintCustomCheck",
+                    "ruleIndex": 8,
+                    "message": {
+                        "text": "Lint found an issue registry (androidx.appcompat.AppCompatIssueRegistry) which is older than the current API level; these checks may not work correctly.\n\nRecompile the checks against the latest version. Custom check API version is 8 (4.1), current lint API level is 10 (7.0+)",
+                        "markdown": "Lint found an issue registry (`androidx.appcompat.AppCompatIssueRegistry`) which is older than the current API level; these checks may not work correctly.\n\nRecompile the checks against the latest version. Custom check API version is 8 (4.1), current lint API level is 10 (7.0+)"
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uriBaseId": "USER_HOME",
+                                    "uri": ".gradle/caches/transforms-3/a6fcefe8e453c4b0f7cadb777f7d3e65/transformed/appcompat-1.3.0/jars/lint.jar"
+                                },
+                                "region": {
+                                    "byteOffset": 0
+                                }                            }
+                        }
+                    ],
+                    "partialFingerprints": {
+                    }
+                },
+                {
+                    "ruleId": "ObsoleteLintCustomCheck",
+                    "ruleIndex": 8,
+                    "message": {
+                        "text": "Lint found an issue registry (androidx.fragment.lint.FragmentIssueRegistry) which is older than the current API level; these checks may not work correctly.\n\nRecompile the checks against the latest version. Custom check API version is 8 (4.1), current lint API level is 10 (7.0+)",
+                        "markdown": "Lint found an issue registry (`androidx.fragment.lint.FragmentIssueRegistry`) which is older than the current API level; these checks may not work correctly.\n\nRecompile the checks against the latest version. Custom check API version is 8 (4.1), current lint API level is 10 (7.0+)"
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uriBaseId": "USER_HOME",
+                                    "uri": ".gradle/caches/transforms-3/605bc918fb82db8486d4b8cebd0b7b20/transformed/fragment-1.3.4/jars/lint.jar"
+                                },
+                                "region": {
+                                    "byteOffset": 0
+                                }                            }
+                        }
+                    ],
+                    "partialFingerprints": {
+                    }
+                },
+                {
+                    "ruleId": "ObsoleteLintCustomCheck",
+                    "ruleIndex": 8,
+                    "message": {
+                        "text": "Lint found an issue registry (androidx.recyclerview.lint.RecyclerViewIssueRegistry) which is older than the current API level; these checks may not work correctly.\n\nRecompile the checks against the latest version. Custom check API version is 8 (4.1), current lint API level is 10 (7.0+)",
+                        "markdown": "Lint found an issue registry (`androidx.recyclerview.lint.RecyclerViewIssueRegistry`) which is older than the current API level; these checks may not work correctly.\n\nRecompile the checks against the latest version. Custom check API version is 8 (4.1), current lint API level is 10 (7.0+)"
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uriBaseId": "USER_HOME",
+                                    "uri": ".gradle/caches/transforms-3/c7a0c6f1d8618310069aae6ca926d235/transformed/recyclerview-1.2.0-alpha06/jars/lint.jar"
+                                },
+                                "region": {
+                                    "byteOffset": 0
+                                }                            }
+                        }
+                    ],
+                    "partialFingerprints": {
+                    }
+                },
+                {
+                    "ruleId": "IssueNoCheckNetworkConnectionInMethod",
+                    "ruleIndex": 1,
+                    "message": {
+                        "text": "Network operations in this method but network connection availability is not verified in the method",
+                        "markdown": "Network operations in this method but **network connection availability** is not verified **in the method**"
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uriBaseId": "%SRCROOT%",
+                                    "uri": "app/src/main/java/com/uniandes/tsdl/andrecn_kotlin/MainActivity.kt"
+                                },
+                                "region": {
+                                    "startLine": 86,
+                                    "startColumn": 5,
+                                    "endLine": 109,
+                                    "endColumn": 6,
+                                    "charOffset": 2522,
+                                    "charLength": 754,
+                                    "snippet": {
+                                        "text": "fun test()\n    {\n        val inter = APIInterface.create();\n        var apiInterface = inter.getMovies()\n        apiInterface = inter.postMovies()\n        apiInterface = inter.getMoovies()\n        apiInterface = inter.putMovies()\n        var appiInterface = inter.patchMovies()\n        apiInterface = inter.deleteMovies()//opti\n\n        appiInterface.enqueue(object : Callback<List<Movie>> {\n            override fun onResponse(\n                call: Call<List<Movie>>?,\n                response: Response<List<Movie>>?\n            ) {\n\n            }\n\n            override fun onFailure(call: Call<List<Movie>>?, t: Throwable?) {\n                Toast.makeText(getApplicationContext(), \"message\", Toast.LENGTH_LONG).show()\n\n            }\n        })\n    }"
+                                    }
+                                },
+                                "contextRegion": {
+                                    "startLine": 84,
+                                    "endLine": 112,
+                                    "snippet": {
+                                        "text": "    }\n\n    fun test()\n    {\n        val inter = APIInterface.create();\n        var apiInterface = inter.getMovies()\n        apiInterface = inter.postMovies()\n        apiInterface = inter.getMoovies()\n        apiInterface = inter.putMovies()\n        var appiInterface = inter.patchMovies()\n        apiInterface = inter.deleteMovies()//opti\n\n        appiInterface.enqueue(object : Callback<List<Movie>> {\n            override fun onResponse(\n                call: Call<List<Movie>>?,\n                response: Response<List<Movie>>?\n            ) {\n\n            }\n\n            override fun onFailure(call: Call<List<Movie>>?, t: Throwable?) {\n                Toast.makeText(getApplicationContext(), \"message\", Toast.LENGTH_LONG).show()\n\n            }\n        })\n    }\n"
+                                    }
+                                }
+                            }
+                        }
+                    ],
+                    "partialFingerprints": {
+                        "sourceContext/v1": "ac40c997d3c8ab78"
+                    }
+                },
+                {
+                    "ruleId": "IssueNoCheckNetworkTypeInMethod",
+                    "ruleIndex": 2,
+                    "message": {
+                        "text": "Network operations in this method but network connection type is not verified in the method",
+                        "markdown": "Network operations in this method but **network connection type** is not verified **in the method**"
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uriBaseId": "%SRCROOT%",
+                                    "uri": "app/src/main/java/com/uniandes/tsdl/andrecn_kotlin/MainActivity.kt"
+                                },
+                                "region": {
+                                    "startLine": 86,
+                                    "startColumn": 5,
+                                    "endLine": 109,
+                                    "endColumn": 6,
+                                    "charOffset": 2522,
+                                    "charLength": 754,
+                                    "snippet": {
+                                        "text": "fun test()\n    {\n        val inter = APIInterface.create();\n        var apiInterface = inter.getMovies()\n        apiInterface = inter.postMovies()\n        apiInterface = inter.getMoovies()\n        apiInterface = inter.putMovies()\n        var appiInterface = inter.patchMovies()\n        apiInterface = inter.deleteMovies()//opti\n\n        appiInterface.enqueue(object : Callback<List<Movie>> {\n            override fun onResponse(\n                call: Call<List<Movie>>?,\n                response: Response<List<Movie>>?\n            ) {\n\n            }\n\n            override fun onFailure(call: Call<List<Movie>>?, t: Throwable?) {\n                Toast.makeText(getApplicationContext(), \"message\", Toast.LENGTH_LONG).show()\n\n            }\n        })\n    }"
+                                    }
+                                },
+                                "contextRegion": {
+                                    "startLine": 84,
+                                    "endLine": 112,
+                                    "snippet": {
+                                        "text": "    }\n\n    fun test()\n    {\n        val inter = APIInterface.create();\n        var apiInterface = inter.getMovies()\n        apiInterface = inter.postMovies()\n        apiInterface = inter.getMoovies()\n        apiInterface = inter.putMovies()\n        var appiInterface = inter.patchMovies()\n        apiInterface = inter.deleteMovies()//opti\n\n        appiInterface.enqueue(object : Callback<List<Movie>> {\n            override fun onResponse(\n                call: Call<List<Movie>>?,\n                response: Response<List<Movie>>?\n            ) {\n\n            }\n\n            override fun onFailure(call: Call<List<Movie>>?, t: Throwable?) {\n                Toast.makeText(getApplicationContext(), \"message\", Toast.LENGTH_LONG).show()\n\n            }\n        })\n    }\n"
+                                    }
+                                }
+                            }
+                        }
+                    ],
+                    "partialFingerprints": {
+                        "sourceContext/v1": "ac40c997d3c8ab78"
+                    }
+                },
+                {
+                    "ruleId": "NoInternetConnectionCheckMethod",
+                    "ruleIndex": 3,
+                    "message": {
+                        "text": ""
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uriBaseId": "%SRCROOT%",
+                                    "uri": "app/src/main/java/com/uniandes/tsdl/andrecn_kotlin/MainActivity.kt"
+                                },
+                                "region": {
+                                    "startLine": 86,
+                                    "startColumn": 5,
+                                    "endLine": 109,
+                                    "endColumn": 6,
+                                    "charOffset": 2522,
+                                    "charLength": 754,
+                                    "snippet": {
+                                        "text": "fun test()\n    {\n        val inter = APIInterface.create();\n        var apiInterface = inter.getMovies()\n        apiInterface = inter.postMovies()\n        apiInterface = inter.getMoovies()\n        apiInterface = inter.putMovies()\n        var appiInterface = inter.patchMovies()\n        apiInterface = inter.deleteMovies()//opti\n\n        appiInterface.enqueue(object : Callback<List<Movie>> {\n            override fun onResponse(\n                call: Call<List<Movie>>?,\n                response: Response<List<Movie>>?\n            ) {\n\n            }\n\n            override fun onFailure(call: Call<List<Movie>>?, t: Throwable?) {\n                Toast.makeText(getApplicationContext(), \"message\", Toast.LENGTH_LONG).show()\n\n            }\n        })\n    }"
+                                    }
+                                },
+                                "contextRegion": {
+                                    "startLine": 84,
+                                    "endLine": 112,
+                                    "snippet": {
+                                        "text": "    }\n\n    fun test()\n    {\n        val inter = APIInterface.create();\n        var apiInterface = inter.getMovies()\n        apiInterface = inter.postMovies()\n        apiInterface = inter.getMoovies()\n        apiInterface = inter.putMovies()\n        var appiInterface = inter.patchMovies()\n        apiInterface = inter.deleteMovies()//opti\n\n        appiInterface.enqueue(object : Callback<List<Movie>> {\n            override fun onResponse(\n                call: Call<List<Movie>>?,\n                response: Response<List<Movie>>?\n            ) {\n\n            }\n\n            override fun onFailure(call: Call<List<Movie>>?, t: Throwable?) {\n                Toast.makeText(getApplicationContext(), \"message\", Toast.LENGTH_LONG).show()\n\n            }\n        })\n    }\n"
+                                    }
+                                }
+                            }
+                        }
+                    ],
+                    "partialFingerprints": {
+                        "sourceContext/v1": "ac40c997d3c8ab78"
+                    }
+                },
+                {
+                    "ruleId": "NoManageNetworkUsage",
+                    "ruleIndex": 4,
+                    "message": {
+                        "text": "Not offering options to manage data usage"
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uriBaseId": "%SRCROOT%",
+                                    "uri": "app/src/main/AndroidManifest.xml"
+                                },
+                                "region": {
+                                    "startLine": 14,
+                                    "startColumn": 10,
+                                    "endLine": 14,
+                                    "endColumn": 18,
+                                    "charOffset": 622,
+                                    "charLength": 8,
+                                    "snippet": {
+                                        "text": "activity"
+                                    }
+                                },
+                                "contextRegion": {
+                                    "startLine": 12,
+                                    "endLine": 17,
+                                    "snippet": {
+                                        "text": "        android:supportsRtl=\"true\"\n        android:theme=\"@style/Theme.AndrECnkotlin\">\n        <activity android:name=\".MainActivity\">\n            <intent-filter>"
+                                    }
+                                }
+                            }
+                        }
+                    ],
+                    "partialFingerprints": {
+                        "sourceContext/v1": "d31992696a2d72fb"
+                    }
+                },
+                {
+                    "ruleId": "NoOnFailureImplementedEmpty",
+                    "ruleIndex": 6,
+                    "message": {
+                        "text": "The OnFailure() method is empty",
+                        "markdown": "The `OnFailure()` method is empty"
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uriBaseId": "%SRCROOT%",
+                                    "uri": "app/src/main/java/com/uniandes/tsdl/andrecn_kotlin/MainActivity.kt"
+                                },
+                                "region": {
+                                    "startLine": 57,
+                                    "startColumn": 17,
+                                    "endLine": 59,
+                                    "endColumn": 18,
+                                    "charOffset": 1915,
+                                    "charLength": 109,
+                                    "snippet": {
+                                        "text": "override fun onFailure(call: Call<List<Movie>>?, t: Throwable?) {\n                    //aaa\n                }"
+                                    }
+                                },
+                                "contextRegion": {
+                                    "startLine": 55,
+                                    "endLine": 62,
+                                    "snippet": {
+                                        "text": "                }\n\n                override fun onFailure(call: Call<List<Movie>>?, t: Throwable?) {\n                    //aaa\n                }\n            })"
+                                    }
+                                }
+                            }
+                        }
+                    ],
+                    "partialFingerprints": {
+                        "sourceContext/v1": "38c7487247a86f5a"
+                    }
+                },
+                {
+                    "ruleId": "NoUsingWorkManager",
+                    "ruleIndex": 7,
+                    "message": {
+                        "text": "Schedule reliable and asynchronous tasks with WorkManager",
+                        "markdown": "Schedule reliable and asynchronous tasks with `WorkManager`"
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uriBaseId": "%SRCROOT%",
+                                    "uri": "app/src/main/java/com/uniandes/tsdl/andrecn_kotlin/MainActivity.kt"
+                                },
+                                "region": {
+                                    "startLine": 13,
+                                    "startColumn": 1,
+                                    "endLine": 13,
+                                    "endColumn": 36,
+                                    "charOffset": 324,
+                                    "charLength": 35,
+                                    "snippet": {
+                                        "text": "import android.app.job.JobScheduler"
+                                    }
+                                },
+                                "contextRegion": {
+                                    "startLine": 11,
+                                    "endLine": 16,
+                                    "snippet": {
+                                        "text": "import retrofit2.Response\n\nimport android.app.job.JobScheduler\nimport android.widget.Toast"
+                                    }
+                                }
+                            }
+                        }
+                    ],
+                    "partialFingerprints": {
+                        "sourceContext/v1": "9ef14760729539a8"
+                    }
+                },
+                {
+                    "ruleId": "NoMoreThanOneOkhttpConstructor",
+                    "ruleIndex": 5,
+                    "message": {
+                        "text": "More than one OkHttpClient instance",
+                        "markdown": "More than one `OkHttpClient` instance"
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uriBaseId": "%SRCROOT%",
+                                    "uri": "app/src/main/java/com/uniandes/tsdl/andrecn_kotlin/CheckNetworConnected.kt"
+                                },
+                                "region": {
+                                    "startLine": 15,
+                                    "startColumn": 22,
+                                    "endLine": 15,
+                                    "endColumn": 36,
+                                    "charOffset": 344,
+                                    "charLength": 14,
+                                    "snippet": {
+                                        "text": "OkHttpClient()"
+                                    }
+                                },
+                                "contextRegion": {
+                                    "startLine": 13,
+                                    "endLine": 18,
+                                    "snippet": {
+                                        "text": "    fun toMyString(): String {\n\n        val client = OkHttpClient()\n"
+                                    }
+                                }
+                            }
+                        }
+                    ],
+                    "partialFingerprints": {
+                        "sourceContext/v1": "7cccf2b2f93c68c6"
+                    }
+                },
+                {
+                    "ruleId": "NoMoreThanOneOkhttpConstructor",
+                    "ruleIndex": 5,
+                    "message": {
+                        "text": "More than one OkHttpClient instance",
+                        "markdown": "More than one `OkHttpClient` instance"
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uriBaseId": "%SRCROOT%",
+                                    "uri": "app/src/main/java/com/uniandes/tsdl/andrecn_kotlin/CheckNetworConnected.kt"
+                                },
+                                "region": {
+                                    "startLine": 17,
+                                    "startColumn": 24,
+                                    "endLine": 17,
+                                    "endColumn": 38,
+                                    "charOffset": 383,
+                                    "charLength": 14,
+                                    "snippet": {
+                                        "text": "OkHttpClient()"
+                                    }
+                                },
+                                "contextRegion": {
+                                    "startLine": 15,
+                                    "endLine": 20,
+                                    "snippet": {
+                                        "text": "        val client = OkHttpClient()\n\n        val client_2 = OkHttpClient()\n"
+                                    }
+                                }
+                            }
+                        }
+                    ],
+                    "partialFingerprints": {
+                        "sourceContext/v1": "c73ccf8d570840db"
+                    }
+                },
+                {
+                    "ruleId": "NoMoreThanOneOkhttpConstructor",
+                    "ruleIndex": 5,
+                    "message": {
+                        "text": "More than one OkHttpClient instance",
+                        "markdown": "More than one `OkHttpClient` instance"
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uriBaseId": "%SRCROOT%",
+                                    "uri": "app/src/main/java/com/uniandes/tsdl/andrecn_kotlin/MainActivity.kt"
+                                },
+                                "region": {
+                                    "startLine": 28,
+                                    "startColumn": 22,
+                                    "endLine": 28,
+                                    "endColumn": 36,
+                                    "charOffset": 797,
+                                    "charLength": 14,
+                                    "snippet": {
+                                        "text": "OkHttpClient()"
+                                    }
+                                },
+                                "contextRegion": {
+                                    "startLine": 26,
+                                    "endLine": 31,
+                                    "snippet": {
+                                        "text": "        val scheduler: JobScheduler = getSystemService(JOB_SCHEDULER_SERVICE) as JobScheduler\n\n        val client = OkHttpClient()\n"
+                                    }
+                                }
+                            }
+                        }
+                    ],
+                    "partialFingerprints": {
+                        "sourceContext/v1": "e558148c57417428"
+                    }
+                },
+                {
+                    "ruleId": "NoMoreThanOneOkhttpConstructor",
+                    "ruleIndex": 5,
+                    "message": {
+                        "text": "More than one OkHttpClient instance",
+                        "markdown": "More than one `OkHttpClient` instance"
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uriBaseId": "%SRCROOT%",
+                                    "uri": "app/src/main/java/com/uniandes/tsdl/andrecn_kotlin/MainActivity.kt"
+                                },
+                                "region": {
+                                    "startLine": 30,
+                                    "startColumn": 24,
+                                    "endLine": 30,
+                                    "endColumn": 38,
+                                    "charOffset": 836,
+                                    "charLength": 14,
+                                    "snippet": {
+                                        "text": "OkHttpClient()"
+                                    }
+                                },
+                                "contextRegion": {
+                                    "startLine": 28,
+                                    "endLine": 33,
+                                    "snippet": {
+                                        "text": "        val client = OkHttpClient()\n\n        val client_2 = OkHttpClient()\n"
+                                    }
+                                }
+                            }
+                        }
+                    ],
+                    "partialFingerprints": {
+                        "sourceContext/v1": "c73ccf8d570840db"
+                    }
+                },
+                {
+                    "ruleId": "AvoidSyncExec",
+                    "ruleIndex": 0,
+                    "message": {
+                        "text": "Avoid Sync Execution"
+                    },
+                    "locations": [
+                        {
+                            "physicalLocation": {
+                                "artifactLocation": {
+                                    "uriBaseId": "%SRCROOT%",
+                                    "uri": "app/src/main/java/com/uniandes/tsdl/andrecn_kotlin/MainActivity.kt"
+                                },
+                                "region": {
+                                    "startLine": 78,
+                                    "startColumn": 28,
+                                    "endLine": 78,
+                                    "endColumn": 50,
+                                    "charOffset": 2474,
+                                    "charLength": 22,
+                                    "snippet": {
+                                        "text": "apiInterface.execute()"
+                                    }
+                                },
+                                "contextRegion": {
+                                    "startLine": 76,
+                                    "endLine": 81,
+                                    "snippet": {
+                                        "text": "            })\n\n            var loquesea = apiInterface.execute()\n        }"
+                                    }
+                                }
+                            }
+                        }
+                    ],
+                    "partialFingerprints": {
+                        "sourceContext/v1": "144f1ade77b35ef7"
+                    }
+                }
+            ]
+        }
+    ]
+}
