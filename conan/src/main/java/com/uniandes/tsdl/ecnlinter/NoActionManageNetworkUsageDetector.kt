@@ -6,7 +6,7 @@ import com.android.utils.XmlUtils.getFirstSubTagByName
 import com.android.utils.XmlUtils.getSubTagsByName
 import com.uniandes.tsdl.ecnlinter.helpers.Helper
 import com.uniandes.tsdl.ecnlinter.issues.IssueNoManageNetworkUsage
-import org.w3c.dom.Element;
+import org.w3c.dom.Element
 
 private val elementLocation = mutableSetOf<ElementLocation>()
 

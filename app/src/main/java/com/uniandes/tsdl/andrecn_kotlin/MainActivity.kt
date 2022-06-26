@@ -39,7 +39,7 @@ class MainActivity : AppCompatActivity() {
 
         val client_2 = OkHttpClient()
 
-        val inter = APIInterface.create();
+        val inter = APIInterface.create()
         var apiInterface = inter.getMovies()
         apiInterface = inter.postMovies()
         apiInterface = inter.getMoovies()
@@ -95,7 +95,7 @@ class MainActivity : AppCompatActivity() {
 
     fun test()
     {
-        val inter = APIInterface.create();
+        val inter = APIInterface.create()
         var apiInterface = inter.getMovies()
         apiInterface = inter.postMovies()
         apiInterface = inter.getMoovies()
@@ -112,7 +112,7 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onFailure(call: Call<List<Movie>>?, t: Throwable?) {
-                Toast.makeText(getApplicationContext(), "message", Toast.LENGTH_LONG).show()
+                Toast.makeText(applicationContext, "message", Toast.LENGTH_LONG).show()
 
             }
         })

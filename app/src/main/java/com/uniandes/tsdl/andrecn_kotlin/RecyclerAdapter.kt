@@ -39,7 +39,7 @@ class RecyclerAdapter(val context: Context) : RecyclerView.Adapter<RecyclerAdapt
     }
 
     fun setMovieListItems(movieList: List<Movie>){
-        this.movieList = movieList;
+        this.movieList = movieList
         notifyDataSetChanged()
     }
 

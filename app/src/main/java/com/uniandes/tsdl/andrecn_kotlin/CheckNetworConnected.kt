@@ -8,7 +8,7 @@ import okhttp3.OkHttpClient
 
 class CheckNetworConnected {
 
-    private val TAG: String = CheckNetworConnected::class.java.getSimpleName()
+    private val TAG: String = CheckNetworConnected::class.java.simpleName
 
     fun toMyString(): String {
 

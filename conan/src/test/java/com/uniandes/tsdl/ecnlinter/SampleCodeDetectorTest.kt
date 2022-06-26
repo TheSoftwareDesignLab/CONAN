@@ -29,8 +29,8 @@ class SampleCodeDetectorTest {
                     package test.pkg;
                     public class TestClass1 {
                         // In a comment, mentioning "lint" has no effect
-                        private static String s1 = "Ignore non-word usages: linting";
-                        private static String s2 = "Let's say it: lint";
+                        private static final String s1 = "Ignore non-word usages: linting";
+                        private static final String s2 = "Let's say it: lint";
                     }
                     """
             ).indented()
