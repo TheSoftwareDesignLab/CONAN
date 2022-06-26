@@ -12,7 +12,8 @@ android {
     }
 }
 
-/** Package the given lint checks library into this AAR  */
 dependencies {
-    lintPublish project(':ecnLinter')
+    lintPublish project(':conan')
 }
+
+/** Package the given lint checks library into this AAR  */

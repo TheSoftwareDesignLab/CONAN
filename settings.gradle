@@ -1,4 +1,4 @@
-include ':ecnLinter'
+include ':conan'
 include ':app'
 include ':library'
 rootProject.name = "AndrECn-kotlin"
