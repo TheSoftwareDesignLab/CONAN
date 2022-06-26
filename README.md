@@ -14,7 +14,7 @@ This project was created by the SoftwarE Analytics Research Team (SEART) at Univ
 
 # CONAN in action
 
-A JAR file containing our set of Linter rules has been generated for users to try CONAN, it is available in the following [link]().
+A JAR file containing our set of Linter rules has been generated for users to try CONAN, it is available in the following [link](https://github.com/TheSoftwareDesignLab/CONAN/blob/gh-pages/assets/conan.jar?raw=true).
 
 The developer should identify the folder containing the main module of the application of interest (_i.e.,_ normally this folder is called `app`). CONAN's JAR must be placed inside the subdirectory `app/libs`. If the `libs` folder does not exist inside `app`, it must be created. Android Lint is IDE-independent, which means it can be run from the command line as follows: `./gradlew :app:lint`. After execution, a report is generated; CONAN adopts the same output format of Android Lint describing the identified _connectivity issues_ in a structured HTML file. For each identified issue CONAN provides the snippet of code in which it has been identified marking its category as _connectivity issues_. Fig. 1 depicts an example of a report presenting an issue in which a _NT_ is being performed but the network type is not being validated. 
 
