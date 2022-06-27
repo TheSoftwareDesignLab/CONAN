@@ -2,10 +2,10 @@ theme: jekyll-theme-minimal
 show_downloads: ["true"]
 logo: /assets/imgs/logo.png
 title: CONAN
-logo1: /assets/img/andes.png
-logo2: /assets/img/usi.png
-tsdllogo: /assets/img/tsdl.png
-seartlogo: /assets/img/SEART-black-bg.png
+logo1: /assets/imgs/andes.png
+logo2: /assets/imgs/usi.png
+tsdllogo: /assets/imgs/tsdl.png
+seartlogo: /assets/imgs/SEART-black-bg.png
 
 navigation:
   - title: Video
