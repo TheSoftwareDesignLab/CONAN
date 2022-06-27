@@ -19,16 +19,19 @@ A JAR file containing our set of Linter rules has been generated for users to tr
 The developer should identify the folder containing the main module of the application of interest (_i.e.,_ normally this folder is called `app`). CONAN's JAR must be placed inside the subdirectory `app/libs`. If the `libs` folder does not exist inside `app`, it must be created. Android Lint is IDE-independent, which means it can be run from the command line as follows: `./gradlew :app:lint`. After execution, a report is generated; CONAN adopts the same output format of Android Lint describing the identified _connectivity issues_ in a structured HTML file. For each identified issue CONAN provides the snippet of code in which it has been identified marking its category as _connectivity issues_. Fig. 1 depicts an example of a report presenting an issue in which a _NT_ is being performed but the network type is not being validated. 
 
 ![No Network type check instance within a report](./assets/imgs/html_report.png)
+> Fig. 1 - No Network type check instance within a report
 
 Moreover, once the JAR file has been included in the project, CONAN can also be used directly in Android Studio. Besides issues being directly highlighted in the editor, a developer can trigger our set of Linter rules by pressing _Inspect Code..._ in the _Code_ menu. Fig. 2 depicts inspection results in the `Problem` panel, presenting the developer a list of _connectivity issues_ as well as their description.
 
 ![ _connectivity issues_ warnings in Android Studio](./assets/imgs/IDE-full.png)
+> Fig. 2 - _Connectivity issues_ warnings in Android Studio
 
 # CONAN Architecture Overview
 
-Fig. 1 depicts CONAN integration in Android Lint. Overall, Lint's open-closed model allows for the addition of custom checks. Given the set of Java classes defining Android lint internals (___i.e.,___ `com.android.tools.lint`), the main idea behind building customized checks is fundamentally to define custom issues (2) (`Issue::class`) (__i.e.,__ potential bug in an Android application), and declare them in a custom registry(1) (`IssueRegistry::class`) (__i.e.,__ registry which provides a list of checks to be performed on an Android project). Each issue needs to be _**mapped**_ to a custom detector(4) (`Detector::class`) responsible for analyzing the issue as well as its (5) (`Scope::class`), meaning the set of type of files (_e.g.,_ Java files) a detector must consider when performing its analysis. Such a _mapping_ relation is performed by defining a custom Implementation(3) (`Implementation::class`).
+Fig. 3 depicts CONAN integration in Android Lint. Overall, Lint's open-closed model allows for the addition of custom checks. Given the set of Java classes defining Android lint internals (___i.e.,___ `com.android.tools.lint`), the main idea behind building customized checks is fundamentally to define custom issues (2) (`Issue::class`) (__i.e.,__ potential bug in an Android application), and declare them in a custom registry(1) (`IssueRegistry::class`) (__i.e.,__ registry which provides a list of checks to be performed on an Android project). Each issue needs to be _**mapped**_ to a custom detector(4) (`Detector::class`) responsible for analyzing the issue as well as its (5) (`Scope::class`), meaning the set of type of files (_e.g.,_ Java files) a detector must consider when performing its analysis. Such a _mapping_ relation is performed by defining a custom Implementation(3) (`Implementation::class`).
 
 ![Architecture](./assets/imgs/conan_archi1024_1.png)
+> Fig. 3 - Overview of CONAN integration in Android Lint
 
 ## (1) Registry:
 A _Registry_ is a list of _Issues_ that Lint addresses given a JAR of Lint rules. The default list of _Issues_ being checked is included in the `BuiltinIssueRegistry` class. Therefore, the inclusion of custom _Issues_ requires the provision of a custom _Registry_, which will be packaged inside the resulting JAR file when publishing custom lint checks, and will point to the newly provided _Issues_
